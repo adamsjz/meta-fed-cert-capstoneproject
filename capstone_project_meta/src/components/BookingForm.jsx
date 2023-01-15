@@ -9,6 +9,7 @@ const BookingForm = ({ availableTimes, setAvailableTimes, submitForm }) => {
     const DD = initDate.getDate() < 10 ? "0" + initDate.getDate() : initDate.getDate();
 
     const [name, setName] = useState();
+    const [email, setEmail] = useState();
     const [date, setDate] = useState(YYYY + "-" + MM + "-" + DD);
     const [time, setTime] = useState("17:00");
     const [guests, setGuests] = useState(2);
@@ -42,6 +43,7 @@ const BookingForm = ({ availableTimes, setAvailableTimes, submitForm }) => {
         e.preventDefault();
         const reservation = {
             name: name,
+            email: email,
             date: date,
             time: time,
             guests: guests,
@@ -56,6 +58,10 @@ const BookingForm = ({ availableTimes, setAvailableTimes, submitForm }) => {
         <div className="form-group">
             <label htmlFor="name">Name</label>
             <input type="text" value={name} minlength ="1" maxlength="50" onChange={(e) => setName(e.target.value)} required/>
+        </div>
+        <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
         </div>
         <div className="form-group">
             <label htmlFor="Date">Date</label>
