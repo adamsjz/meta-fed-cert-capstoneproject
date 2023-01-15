@@ -8,6 +8,7 @@ const BookingForm = ({ availableTimes, setAvailableTimes, submitForm }) => {
     const MM = initDate.getMonth() < 10 ? "0" + (initDate.getMonth() + 1) : initDate.getMonth() + 1;
     const DD = initDate.getDate() < 10 ? "0" + initDate.getDate() : initDate.getDate();
 
+    const [name, setName] = useState();
     const [date, setDate] = useState(YYYY + "-" + MM + "-" + DD);
     const [time, setTime] = useState("17:00");
     const [guests, setGuests] = useState(2);
@@ -40,6 +41,7 @@ const BookingForm = ({ availableTimes, setAvailableTimes, submitForm }) => {
     function handleSubmit(e) {
         e.preventDefault();
         const reservation = {
+            name: name,
             date: date,
             time: time,
             guests: guests,
@@ -51,6 +53,10 @@ const BookingForm = ({ availableTimes, setAvailableTimes, submitForm }) => {
   return (
     <form onSubmit={handleSubmit}>
         <h1>Reserve a table</h1>
+        <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input type="text" value={name} minlength ="1" maxlength="50" onChange={(e) => setName(e.target.value)} required/>
+        </div>
         <div className="form-group">
             <label htmlFor="Date">Date</label>
             <input type="date" name='date' value={date} onChange={handleDateChange} required/>
